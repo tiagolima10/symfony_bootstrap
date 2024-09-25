@@ -18,7 +18,7 @@ class HomeController extends AbstractController
             ['title' => 'Design',  'text'=> 'Notícias sobre o Mundo'],
             ['title' => 'Cultura',  'text'=> 'Notícias sobre Cultura'],
             ['title' => 'Negócios',  'text'=> 'Notícias sobre Negócios'],
-            ['title' => 'Política',  'text'=> 'Notícias sobre Política'],
+            ['title' => 'Esportes',  'text'=> 'Notícias sobre Esportes'],
             ['title' => 'Opinião',  'text'=> 'Notícias sobre Opinião'],
             ['title' => 'Ciência',  'text'=> 'Notícias sobre o Ciência'],
             ['title' => 'Saúde',  'text'=> 'Notícias sobre Saúde'],
