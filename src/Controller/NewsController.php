@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
 {
-    #[Route('api/news/{id}', name:'app_new', methods:['GET'])]
+    #[Route('/api/news/{id}', name:'app_new', methods:['GET'])]
     public function getNew(string $id=null): Response
     {
         // TODO - Criar uma Query real
@@ -20,7 +20,7 @@ class NewsController extends AbstractController
             'data'=> '2024-09-25',
             'imagem'=> 'https://exemplo.com/imagem/spfcxbot.jpg',
         ];
-        return new JsonResponse($news);
+        return $this->json($news);
     }
 }
 
