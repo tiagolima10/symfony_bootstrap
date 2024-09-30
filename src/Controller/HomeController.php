@@ -69,6 +69,44 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/reportagens', name:'app_reportagens')]
+    public function getTeste(Request $request):Response 
+    {
+        $nome = "";
+        $sobrenome = "";
+
+        if($request->get('nome')) 
+        {
+            $nome = $request->get('nome');
+        }
+
+        if($request->get('sobrenome')) 
+        {
+            $sobrenome = $request->get('sobrenome');
+        }
+
+        $categories = [
+            ['title' => 'Mundo',  'text'=> 'Notícias sobre o Mundo'],
+            ['title' => 'Brasil',  'text'=> 'Notícias sobre o Brasil'],
+            ['title' => 'Tecnologia',  'text'=> 'Notícias sobre Tecnologia'],
+            ['title' => 'Design',  'text'=> 'Notícias sobre o Mundo'],
+            ['title' => 'Cultura',  'text'=> 'Notícias sobre Cultura'],
+            ['title' => 'Negócios',  'text'=> 'Notícias sobre Negócios'],
+            ['title' => 'Política',  'text'=> 'Notícias sobre Política'],
+            ['title' => 'Opinião',  'text'=> 'Notícias sobre Opinião'],
+            ['title' => 'Ciência',  'text'=> 'Notícias sobre o Ciência'],
+            ['title' => 'Saúde',  'text'=> 'Notícias sobre Saúde'],
+            ['title' => 'Estilo de vida',  'text'=> 'Notícias sobre Estilo de vida'],
+            ['title' => 'Viagens',  'text'=> 'Notícias sobre Viagens'],
+        ];
+
+        return $this->render('reportagens.html.twig', [
+            'categories'=> $categories,
+            'nome' => $nome,
+            'sobrenome' => $sobrenome,
+        ]);
+    }
+
     public function getNewsList(){
         $news = [
             [

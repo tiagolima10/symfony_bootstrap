@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Reportagens</h1>
+
+<main style="width: 100%; max-width: 330px; padding: 15px; margin: auto;" class="form-signin">
+  <form action="" method="post">
+    <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="nome" name="nome" placeholder="nome">
+      <label for="floatingInput">Nome</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="sobrenome">
+      <label for="floatingInput">Sobrenome</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
+    <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
+  </form>
+</main>
+{% endblock %}
