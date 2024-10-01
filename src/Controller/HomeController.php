@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\NewsService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,7 +13,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class HomeController extends AbstractController
 {
     #[Route('/', name:'app_home')]
-    public function home(LoggerInterface $logger, HttpClientInterface $httpClient): Response
+    public function home(LoggerInterface $logger, NewsService $service): Response
     {
         $logger->info('Acessou a home');
 
@@ -23,36 +24,20 @@ class HomeController extends AbstractController
         $logger->info('Título definido');
 
         return $this->render("home.html.twig", [
-            'categories'=> $this->getCategoryList($httpClient),
+            'categories'=> $service->getCategoryList(),
             'pageTitle' => $pageTitle,
         ]);
     }
 
     #[Route('/categoria/{slug}', name:'app_category')]
-    public function category(string $slug=null, HttpClientInterface $httpClient): Response
+    public function category(string $slug=null, NewsService $service): Response
     {
         $pageTitle = $slug;
         return $this->render("category.html.twig", [
             'pageTitle' => $pageTitle,
-            'categories'=> $this->getCategoryList($httpClient),
-            'news' => $this->getNewsList($httpClient),
+            'categories'=> $service->getCategoryList(),
+            'news' => $service->getNewsList(),
         ]);
-    }
-
-    public function getCategoryList(HttpClientInterface $httpClient){
-        $url = 'https://raw.githubusercontent.com/JonasPoli/array-news/refs/heads/main/arrayCategoryNews.json';
-        $html = $httpClient->request('GET', $url);
-        $news = $html->toArray();
-
-        return $news;
-    }
-
-    public function getNewsList(HttpClientInterface $httpClient){
-        $url = 'https://raw.githubusercontent.com/JonasPoli/array-news/refs/heads/main/arrayNews.json';
-        $html = $httpClient->request('GET', $url);
-        $news = $html->toArray();
-
-        return $news;
     }
 
     #[Route('/news/{id}')]
